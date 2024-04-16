@@ -45,7 +45,7 @@ namespace DatabaseFirst.Controllers
             for (int i = 0; i < 2; i++)
             {
                 categorias.Add(new Categoria { Nombre = Guid.NewGuid().ToString() });
-                //_contexto.Categoria.Add(new Categoria { Nombre = Guid.NewGuid().ToString() });
+                //_context.Categoria.Add(new Categoria { Nombre = Guid.NewGuid().ToString() });
             }
             _context.Categoria.AddRange(categorias);
             _context.SaveChanges();
@@ -87,6 +87,58 @@ namespace DatabaseFirst.Controllers
                 });
             }
             _context.Categoria.AddRange(categorias);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Editar(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+
+            var categoria = _context.Categoria.FirstOrDefault(c => c.Categoria_Id == id);
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(Categoria categoria)
+        {
+            if (ModelState.IsValid)
+            {
+                categoria.FechaCreacion=DateTime.Now;
+                _context.Categoria.Update(categoria);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(categoria);
+        }
+        [HttpGet]
+        public IActionResult Borrar(int? id)
+        {
+            var categoria = _context.Categoria.FirstOrDefault(c => c.Categoria_Id == id);
+            _context.Categoria.Remove(categoria);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult BorrarMultiple2()
+        {
+            IEnumerable<Categoria> categorias = _context.Categoria.OrderByDescending(c => c.Categoria_Id).Take(2);
+            _context.Categoria.RemoveRange(categorias);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult BorrarMultiple5()
+        {
+            IEnumerable<Categoria> categorias = _context.Categoria.OrderByDescending(c => c.Categoria_Id).Take(5);
+            _context.Categoria.RemoveRange(categorias);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
