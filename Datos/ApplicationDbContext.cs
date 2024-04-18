@@ -15,7 +15,7 @@ namespace DatabaseFirst.Datos
         }
 
         public DbSet<nota> notas { get; set; }
-        public DbSet<usuario> usuarios { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Articulo> Articulo { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<DetalleUsuario> DetalleUsuario { get; set; }

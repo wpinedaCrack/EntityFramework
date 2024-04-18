@@ -16,6 +16,6 @@ namespace DatabaseFirst.Models
         [Required]
         public string Mascota { get; set; }
 
-        public usuario usuario { get; set; }
+        public Usuario usuario { get; set; }
     }
 }

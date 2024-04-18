@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DatabaseFirst.Models
 {
     [Table("usuario")]
-    public partial class usuario
+    public partial class Usuario
     {
         [Key]
         public int id { get; set; }

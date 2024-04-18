@@ -1,6 +1,8 @@
 ﻿using DatabaseFirst.Datos;
 using DatabaseFirst.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DatabaseFirst.Controllers
 {
@@ -15,7 +17,44 @@ namespace DatabaseFirst.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            //Consulta filtrando por fecha
+            //DateTime fechaComparacion = new DateTime(2021, 11, 05);
+            //List<Categoria> listaCategorias = _contexto.Categoria.Where(f => f.FechaCreacion >= fechaComparacion).OrderByDescending(f => f.FechaCreacion).ToList();
+            //return View(listaCategorias);
+
+            //Seleccionar columnas espefificas
+            //var categorias = _contexto.Categoria.Where(n => n.Nombre == "Test 5").Select(n => n).ToList();
+            //List<Categoria> listaCategorias = _contexto.Categoria.ToList();            
+
+            ////Consultas sql convencioinales
+            //var listaCategorias = _contexto.Categoria.FromSqlRaw("select * from categoria where nombre like 'categoría%' and Activo = 1").ToList();
+
+            //Consultas sql convencioinales
+            //var listaCategorias = _contexto.Categoria.FromSqlRaw("select * from categoria where nombre like 'categoría%' and Activo = 1").ToList();
+
+
+
+            //Agrupar
+            //var listaCategoriasAgrupadas = _context.Categoria
+            //.GroupBy(c => new { c.Activo })
+            //.Select(c => new { c.Key, Count = c.Count() }).ToList();
+
+            //foreach(var item in listaCategoriasAgrupadas)
+            //{
+            //    Console.WriteLine("key "+item.Key+" Cantidad "+item.Count );
+            //}
+
+
+            //take y skip Paginar
+            //List<Categoria> listaCategorias = _context.Categoria.Skip(3).Take(5).ToList();
+
+            //Interpolacion de string (string interpolation)
+            //var id = 4;
+            //var categoria = _context.Categoria.FromSqlRaw($"select * from categoria where categoria_id = {id}").ToList();
+            //List<Categoria> listaCategorias = _context.Categoria.ToList();
+
             List<Categoria> listaCategorias = _context.Categoria.ToList();
+
             return View(listaCategorias);
         }
 
