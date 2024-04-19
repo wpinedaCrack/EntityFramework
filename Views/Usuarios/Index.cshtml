@@ -19,23 +19,23 @@
     {
         <table class="table table-striped border">
             <tr>
-                <th>@Html.DisplayNameFor(u => u.id)</th>
+                <th>@Html.DisplayNameFor(u => u.Id)</th>
                 <th>@Html.DisplayNameFor(u => u.Nombre)</th>
-                <th>@Html.DisplayNameFor(u => u.email)</th>
+                <th>@Html.DisplayNameFor(u => u.Email)</th>
                 <th>@Html.DisplayNameFor(u => u.Direccion)</th>
                 <th></th>
             </tr>
             @foreach (var usuario in Model)
             {
                 <tr>
-                    <td>@usuario.id</td>
+                    <td>@usuario.Id</td>
                     <td>@usuario.Nombre</td>
-                    <td>@usuario.email</td>
+                    <td>@usuario.Email</td>
                     <td>@usuario.Direccion</td>
                     <td>
-                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@usuario.id">Editar</a>
-                        <a class="btn btn-secondary text-white" asp-action="Detalle" asp-route-id="@usuario.id">Detalle</a>
-                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@usuario.id">Borrar</a>
+                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@usuario.Id">Editar</a>
+                        <a class="btn btn-secondary text-white" asp-action="Detalle" asp-route-id="@usuario.Id">Detalle</a>
+                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@usuario.Id">Borrar</a>
                     </td>
                 </tr>
             }

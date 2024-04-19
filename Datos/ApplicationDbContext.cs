@@ -21,9 +21,12 @@ namespace DatabaseFirst.Datos
         public DbSet<DetalleUsuario> DetalleUsuario { get; set; }
         public DbSet<Etiqueta> Etiqueta { get; set; }
 
+        //Agregamos dbset para la tabla de realación ArticuloEtiqueta
+        public DbSet<ArticuloEtiqueta> ArticuloEtiqueta { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // base.OnModelCreating(modelBuilder);
+        {// base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<ArticuloEtiqueta>().HasKey(ae => new { ae.Etiqueta_Id , ae.Articulo_Id });
         }
     }

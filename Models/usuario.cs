@@ -10,14 +10,14 @@ namespace DatabaseFirst.Models
     public partial class Usuario
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         //[Required(ErrorMessage = "El campo Correo electrónico es obligatorio.")]
         //[DataType(DataType.EmailAddress, ErrorMessage = "El campo Correo electrónico no es una dirección de correo electrónico válida.")]
         //[RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Por favor ingrese un email correcto")]
 
         [EmailAddress (ErrorMessage = "Por favor ingrese un email correcto")]
-        public string email { get; set; } = null!;
+        public string Email { get; set; } = null!;
         
         public string Nombre { get; set; } = null!;
 
@@ -28,7 +28,7 @@ namespace DatabaseFirst.Models
 
         //Relación Uno a Uno.
         [ForeignKey("DetalleUsuario")]
-        public int DetalleUsuario_Id { get; set; }
+        public int? DetalleUsuario_Id { get; set; }
         public DetalleUsuario DetalleUsuario { get; set; }
     }
 }

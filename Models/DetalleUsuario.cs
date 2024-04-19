@@ -11,7 +11,7 @@ namespace DatabaseFirst.Models
         public string Cedula { get; set; }
 
         [Required]
-        public string Depórte { get; set; }
+        public string Deporte { get; set; }
 
         [Required]
         public string Mascota { get; set; }

@@ -54,7 +54,7 @@ namespace DatabaseFirst.Migrations
 
                     b.HasIndex("Categoria_Id");
 
-                    b.ToTable("Tbl_Articulo");
+                    b.ToTable("Tbl_Articulo", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseFirst.Models.ArticuloEtiqueta", b =>
@@ -69,7 +69,7 @@ namespace DatabaseFirst.Migrations
 
                     b.HasIndex("Articulo_Id");
 
-                    b.ToTable("ArticuloEtiqueta");
+                    b.ToTable("ArticuloEtiqueta", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseFirst.Models.Categoria", b =>
@@ -87,11 +87,12 @@ namespace DatabaseFirst.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Categoria_Id");
 
-                    b.ToTable("Categoria");
+                    b.ToTable("Categoria", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseFirst.Models.DetalleUsuario", b =>
@@ -106,7 +107,7 @@ namespace DatabaseFirst.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Depórte")
+                    b.Property<string>("Deporte")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -116,7 +117,7 @@ namespace DatabaseFirst.Migrations
 
                     b.HasKey("DetalleUsuario_Id");
 
-                    b.ToTable("DetalleUsuario");
+                    b.ToTable("DetalleUsuario", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseFirst.Models.Etiqueta", b =>
@@ -135,7 +136,7 @@ namespace DatabaseFirst.Migrations
 
                     b.HasKey("Etiqueta_Id");
 
-                    b.ToTable("Etiqueta");
+                    b.ToTable("Etiqueta", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseFirst.Models.nota", b =>
@@ -162,35 +163,36 @@ namespace DatabaseFirst.Migrations
 
                     b.HasKey("idnota");
 
-                    b.ToTable("notas");
+                    b.ToTable("notas", (string)null);
                 });
 
-            modelBuilder.Entity("DatabaseFirst.Models.usuario", b =>
+            modelBuilder.Entity("DatabaseFirst.Models.Usuario", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DetalleUsuario_Id")
+                    b.Property<int?>("DetalleUsuario_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("DetalleUsuario_Id")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[DetalleUsuario_Id] IS NOT NULL");
 
-                    b.ToTable("usuario");
+                    b.ToTable("usuario", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseFirst.Models.Articulo", b =>
@@ -223,13 +225,11 @@ namespace DatabaseFirst.Migrations
                     b.Navigation("Etiqueta");
                 });
 
-            modelBuilder.Entity("DatabaseFirst.Models.usuario", b =>
+            modelBuilder.Entity("DatabaseFirst.Models.Usuario", b =>
                 {
                     b.HasOne("DatabaseFirst.Models.DetalleUsuario", "DetalleUsuario")
                         .WithOne("usuario")
-                        .HasForeignKey("DatabaseFirst.Models.usuario", "DetalleUsuario_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DatabaseFirst.Models.Usuario", "DetalleUsuario_Id");
 
                     b.Navigation("DetalleUsuario");
                 });
